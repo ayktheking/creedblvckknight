@@ -1,0 +1,16 @@
+def binary_to_decimal(binary):
+    decimal = 0
+    power = 0
+
+    # Iterating through the binary number from right to left
+    for digit in reversed(binary):
+        if digit == '1':
+            decimal += 2 ** power  # Calculating the weighted sum
+        power += 1  # Incrementing the power for the next bit
+
+    return decimal
+
+# Example usage:
+binary_number = "101010"  # Replace this with your binary number
+result = binary_to_decimal(binary_number)
+print(f"The decimal equivalent of {binary_number} is {result}")
