@@ -1,0 +1,55 @@
+class InfixToPostfixConverter:
+    def __init__(self):
+        self.infix = ""
+        self.postfix = ""
+
+    def get_infix(self, expression):
+        self.infix = expression
+
+    def show_infix(self):
+        return f"Infix Expression: {self.infix};"
+
+    def show_postfix(self):
+        return f"Postfix Expression: {self.postfix}"
+
+    def precedence(self, operator):
+        precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
+        return precedence.get(operator, 0)
+
+    def convert_to_postfix(self):
+        stack = []
+        self.postfix = ""
+
+        for symbol in self.infix:
+            if symbol.isalnum():  # Operand
+                self.postfix += symbol
+            elif symbol == '(':
+                stack.append(symbol)
+            elif symbol == ')':
+                while stack and stack[-1] != '(':
+                    self.postfix += stack.pop()
+                stack.pop()  # Discard '('
+            else:  # Operator
+                while stack and self.precedence(stack[-1]) >= self.precedence(symbol):
+                    self.postfix += stack.pop()
+                stack.append(symbol)
+
+        while stack:
+            self.postfix += stack.pop()
+
+# Testing the expressions
+expressions = [
+    "A + B - C",
+    "(A + B) * C",
+    "(A + B) * (C - D)",
+    "A + ((B + C) * (E - F) - G) / (H - I)",
+    "A + B * (C + D) - E / F * G + H"
+]
+
+for expression in expressions:
+    converter = InfixToPostfixConverter()
+    converter.get_infix(expression)
+    converter.convert_to_postfix()
+    print(converter.show_infix())
+    print(converter.show_postfix())
+    print()
