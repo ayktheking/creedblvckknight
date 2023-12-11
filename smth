@@ -1,0 +1,64 @@
+//a function in C++ that converts a binary number to its decimal equivalent:
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int binaryToDecimal(long long binaryNumber) {
+    int decimalNumber = 0, i = 0, remainder;
+    while (binaryNumber != 0) {
+        remainder = binaryNumber % 10;
+        binaryNumber /= 10;
+        decimalNumber += remainder * pow(2, i);
+        ++i;
+    }
+    return decimalNumber;
+}
+
+int main() {
+    long long binaryInput;
+    cout << "Enter a binary number: ";
+    cin >> binaryInput;
+
+    int decimalResult = binaryToDecimal(binaryInput);
+    cout << "Decimal equivalent: " << decimalResult << endl;
+
+    return 0;
+}
+
+
+
+
+
+//Write a function to convert a number from base 2 to base 10 with c++
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int binaryToDecimal(long long binaryNumber) {
+    int decimalNumber = 0, i = 0, remainder;
+    while (binaryNumber != 0) {
+        remainder = binaryNumber % 10;
+        binaryNumber /= 10;
+        decimalNumber += remainder * pow(2, i);
+        ++i;
+    }
+    return decimalNumber;
+}
+
+int main() {
+    long long binaryInput;
+    cout << "Enter a binary number: ";
+    cin >> binaryInput;
+
+    int decimalResult = binaryToDecimal(binaryInput);
+    cout << "Decimal equivalent: " << decimalResult << endl;
+
+    return 0;
+}
+
+
+
